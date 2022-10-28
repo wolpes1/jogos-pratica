@@ -60,5 +60,7 @@ while not acertou and not enforcou:
 
 if acertou:
     print(ganhador(erros))
+    input('Pressione enter para sair.')
 elif enforcou:
     print(perdedor)
+    input('Pressione enter para sair')
