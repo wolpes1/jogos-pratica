@@ -1,8 +1,16 @@
 # Jogo da Forca
 
+import os
+
 # Requisitos: Palavra oculta, numero de erros, sistema de acertos
 
 # Funções utiizadas: 
+
+# Limpar os dados da tela
+
+def limpar_tela():
+    os.system('cls')
+
 # Criar uma array com a quantidade de traços para mostrar as letras da palavra
 
 def ocultar_palavra(palavra):
@@ -40,6 +48,7 @@ enforcou = False
 # Estrutura do jogo
 
 while not acertou and not enforcou:
+    limpar_tela()
     print(letras_ocultas)
     print(mensagem_max_erros(max_erros, erros))
     letra_chutada = input(mensagem_chute).lower()
