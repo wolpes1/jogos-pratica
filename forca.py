@@ -31,45 +31,50 @@ def mensagem_max_erros(max_erros, erros):
 def ganhador(erros):
     return(f'Parabéns! Você ganhou com apenas {erros} erros!')
 
-# Mensagens utilizadas
-
-perdedor = 'Você infelizmente gastou todas as suas tentativas e perdeu :/'
-mensagem_chute = 'Qual letra você acha que existe na palavra oculta?\n'
-
-# Propriedades e requisitos para funcionamento do jogo
-
-palavra_oculta = 'desenho'
-letras_ocultas = ocultar_palavra(palavra_oculta)
-erros = 0
-max_erros = 6
-acertou = False
-enforcou = False
-
 # Estrutura do jogo
 
-while not acertou and not enforcou:
-    limpar_tela()
-    print(letras_ocultas)
-    print(mensagem_max_erros(max_erros, erros))
-    letra_chutada = input(mensagem_chute).lower()
+def jogar():
 
-    if letra_chutada in palavra_oculta:
-        position = 0
-        for letra in palavra_oculta:
-            if letra == letra_chutada:
-                letras_ocultas[position] = letra_chutada
-                position += 1
-            else:
-                position += 1
-    else:
-        erros += 1
+    # Mensagens utilizadas
 
-    acertou = '_' not in letras_ocultas
-    enforcou = erros == max_erros
+    perdedor = 'Você infelizmente gastou todas as suas tentativas e perdeu :/'
+    mensagem_chute = 'Qual letra você acha que existe na palavra oculta?\n'
 
-if acertou:
-    print(ganhador(erros))
-    input('Pressione enter para sair.')
-elif enforcou:
-    print(perdedor)
-    input('Pressione enter para sair')
+    # Propriedades e requisitos para funcionamento do jogo
+
+    palavra_oculta = 'desenho'
+    letras_ocultas = ocultar_palavra(palavra_oculta)
+    erros = 0
+    max_erros = 6
+    acertou = False
+    enforcou = False
+    boas_vindas = 'Olá, bem vindx ao Jogo da forca! Vamos começar?\nPressione enter para continuar.\n'
+
+    input(boas_vindas)
+
+    while not acertou and not enforcou:
+        limpar_tela()
+        print(letras_ocultas)
+        print(mensagem_max_erros(max_erros, erros))
+        letra_chutada = input(mensagem_chute).lower()
+
+        if letra_chutada in palavra_oculta:
+            position = 0
+            for letra in palavra_oculta:
+                if letra == letra_chutada:
+                    letras_ocultas[position] = letra_chutada
+                    position += 1
+                else:
+                    position += 1
+        else:
+            erros += 1
+
+        acertou = '_' not in letras_ocultas
+        enforcou = erros == max_erros
+
+    if acertou:
+        print(ganhador(erros))
+        input('Pressione enter para sair.')
+    elif enforcou:
+        print(perdedor)
+        input('Pressione enter para sair')
