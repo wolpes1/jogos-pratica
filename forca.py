@@ -45,7 +45,9 @@ def obter_palavra(arquivo = str):
 
     arquivo_aberto.close()
 
-    palavra_aleatoria = palavras[random.randrange(0,len(palavras))]
+    numero = random.randrange(0,len(palavras))
+
+    palavra_aleatoria = palavras[numero]
 
 
 
