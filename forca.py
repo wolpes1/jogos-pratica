@@ -43,7 +43,11 @@ def obter_palavra(arquivo = str):
         linha = linha.strip()
         palavras.append(linha)
 
+    arquivo_aberto.close()
+
     palavra_aleatoria = palavras[random.randrange(0,len(palavras))]
+
+
 
     return palavra_aleatoria
 

@@ -53,5 +53,7 @@ def jogar():
 
     if tentativas == 0:
         print('Você perdeu :(')
+        input('Pressione enter para sair.')
     elif acertou:
         print(f'Você adivinhou o número oculto, que era {numero_oculto}!')
+        input('Pressione enter para sair.')
