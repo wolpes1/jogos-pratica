@@ -23,8 +23,10 @@ while escolha != 'sair' and escolha != 'f' and escolha != 'a':
 limpar_tela()
 
 if escolha == 'f':
+    input('Vamos jogar forca?')
     forca.jogar()
 elif escolha == 'a':
+    input('Vamos jogar adivinhação?')
     adivinhacao.jogar()
 elif escolha == 'sair':
     input(agradecimento_saida)
