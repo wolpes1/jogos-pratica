@@ -1,6 +1,7 @@
 # Jogo da Forca
 
 import os
+import random
 
 # Requisitos: Palavra oculta, numero de erros, sistema de acertos
 
@@ -31,6 +32,22 @@ def mensagem_max_erros(max_erros, erros):
 def ganhador(erros):
     return(f'Parabéns! Você ganhou com apenas {erros} erros!')
 
+# Função para obter palavra de um arquivo
+
+def obter_palavra(arquivo = str):
+
+    palavras = []
+    arquivo_aberto = open(arquivo, 'r')
+
+    for linha in arquivo_aberto:
+        linha = linha.strip()
+        palavras.append(linha)
+
+    palavra_aleatoria = palavras[random.randrange(0,len(palavras))]
+
+    return palavra_aleatoria
+
+
 # Estrutura do jogo
 
 def jogar():
@@ -42,7 +59,7 @@ def jogar():
 
     # Propriedades e requisitos para funcionamento do jogo
 
-    palavra_oculta = 'desenho'
+    palavra_oculta = obter_palavra('palavras.txt')
     letras_ocultas = ocultar_palavra(palavra_oculta)
     erros = 0
     max_erros = 6
@@ -73,6 +90,7 @@ def jogar():
         enforcou = erros == max_erros
 
     if acertou:
+        print(f'A palavra oculta era {palavra_oculta}!')
         print(ganhador(erros))
         input('Pressione enter para sair.')
     elif enforcou:

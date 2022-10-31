@@ -37,9 +37,8 @@ def jogar():
     elif dificuldade == 'd':
         numero_oculto = dificil
 
-
-
     while tentativas != 0 and acertou != True:
+        print(f'Você tem {tentativas} tentativas para acertar o número.')
         print('Qual número você deseja chutar?\n')
         numero_chutado = int(input('Insira o número: '))
         if numero_chutado > numero_oculto:
