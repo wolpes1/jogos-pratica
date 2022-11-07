@@ -37,19 +37,14 @@ def ganhador(erros):
 def obter_palavra(arquivo = str):
 
     palavras = []
-    arquivo_aberto = open(arquivo, 'r')
-
-    for linha in arquivo_aberto:
-        linha = linha.strip()
-        palavras.append(linha)
-
-    arquivo_aberto.close()
+    with open(arquivo, 'r') as arquivo_aberto:
+        for linha in arquivo_aberto:
+            linha = linha.strip()
+            palavras.append(linha)
 
     numero = random.randrange(0,len(palavras))
 
     palavra_aleatoria = palavras[numero]
-
-
 
     return palavra_aleatoria
 
@@ -62,9 +57,11 @@ def jogar():
 
     perdedor = 'Você infelizmente gastou todas as suas tentativas e perdeu :/'
     mensagem_chute = 'Qual letra você acha que existe na palavra oculta?\n'
+    letra_usada = 'Esta letra já foi usada!'
 
     # Propriedades e requisitos para funcionamento do jogo
 
+    letras_chutadas = []
     palavra_oculta = obter_palavra('palavras.txt')
     letras_ocultas = ocultar_palavra(palavra_oculta)
     erros = 0
@@ -80,18 +77,23 @@ def jogar():
         print(letras_ocultas)
         print(mensagem_max_erros(max_erros, erros))
         letra_chutada = input(mensagem_chute).lower()
+        
 
-        if letra_chutada in palavra_oculta:
-            position = 0
-            for letra in palavra_oculta:
-                if letra == letra_chutada:
-                    letras_ocultas[position] = letra_chutada
-                    position += 1
-                else:
-                    position += 1
+        if letra_chutada in letras_chutadas:
+            input(letra_usada)
         else:
-            erros += 1
+            if letra_chutada in palavra_oculta:
+                position = 0
+                for letra in palavra_oculta:
+                    if letra == letra_chutada:
+                        letras_ocultas[position] = letra_chutada
+                        position += 1
+                    else:
+                        position += 1
+            else:
+                erros += 1
 
+        letras_chutadas.append(letra_chutada)
         acertou = '_' not in letras_ocultas
         enforcou = erros == max_erros
 
