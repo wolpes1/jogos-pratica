@@ -13,9 +13,6 @@ def limpar_tela():
 
 
 def jogar():
-    facil = obter_numero(10)
-    medio = obter_numero(20)
-    dificil = obter_numero(30)
 
     tentativas = 10
     numero_oculto = None
@@ -31,22 +28,28 @@ def jogar():
             dificuldade = None
 
     if dificuldade == 'f':
-        numero_oculto = facil
+        numero_oculto = obter_numero(10)
     elif dificuldade == 'm':
-        numero_oculto = medio
+        numero_oculto = obter_numero(20)
     elif dificuldade == 'd':
-        numero_oculto = dificil
+        numero_oculto = obter_numero(30)
 
-    while tentativas != 0 and acertou != True:
+    def tentativa():
         print(f'Você tem {tentativas} tentativas para acertar o número.')
         print('Qual número você deseja chutar?\n')
-        numero_chutado = int(input('Insira o número: '))
+        return int(input('Insira o número: '))
+
+    numero_chutado = tentativa()
+
+    while tentativas != 0 and acertou != True:
         if numero_chutado > numero_oculto:
             print(f'O número {numero_chutado} é maior que o oculto.')
             tentativas -= 1
+            numero_chutado = tentativa()
         elif numero_chutado < numero_oculto:
             print(f'O número {numero_chutado} é menor que o oculto.')
             tentativas -= 1
+            numero_chutado = tentativa()
         else:
             acertou = True
             break
